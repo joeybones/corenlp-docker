@@ -13,7 +13,7 @@ RUN \
 Run apt-get install -y unzip
 
 # Install CoreNLP
-ENV VERSION stanford-corenlp-full-2016-10-31
+ENV VERSION stanford-corenlp-full-2017-06-09
 RUN mkdir -p /opt/corenlp
 WORKDIR /opt/corenlp
 RUN wget --quiet http://nlp.stanford.edu/software/$VERSION.zip -O corenlp.zip
