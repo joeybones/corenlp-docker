@@ -1,4 +1,4 @@
-# CoreNLP Server Docker
+# Dockerized CoreNLP Server v3.8.0
 This is a fork of [vzhong/corenlp-docker](https://github.com/vzhong/corenlp-docker) with the version upgraded to 3.8.0
 
 To get this image:
