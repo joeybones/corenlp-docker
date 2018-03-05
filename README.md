@@ -1,21 +1,22 @@
 # CoreNLP Server Docker
+This is a fork of [vzhong/corenlp-docker](https://github.com/vzhong/corenlp-docker) with the version upgraded to 3.8.0
 
 To get this image:
 
 ```
-docker pull vzhong/corenlp-server
+docker pull joeybones/stanford_corenlp
 ```
 
 To run the server:
 
 ```
-docker run -p 9000:9000 vzhong/corenlp-server
+docker run -p 9000:9000 joeybones/stanford_corenlp
 ```
 
 To run the server as a daemon:
 
 ```
-docker run --name corenlp -p 9000:9000 -d vzhong/corenlp-server
+docker run --name corenlp -p 9000:9000 -d joeybones/stanford_corenlp
 ```
 
 The port exposed on the docker image for CoreNLP is `9000`.
