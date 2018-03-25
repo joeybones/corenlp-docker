@@ -1,30 +1,27 @@
-FROM phusion/baseimage:0.9.19
+# Start with Alpine linux with Oracle JDK8:
+FROM frolvlad/alpine-oraclejdk8:slim
 
-# Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
-
-# Install Java
-RUN \
-  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
-  add-apt-repository -y ppa:webupd8team/java && \
-  apt-get update && \
-  apt-get install -y oracle-java8-installer
-
-Run apt-get install -y unzip
+RUN apk add --no-cache \
+        unzip \
+        bash \
+        openrc
 
 # Install CoreNLP
 ENV VERSION stanford-corenlp-full-2017-06-09
 RUN mkdir -p /opt/corenlp
 WORKDIR /opt/corenlp
-RUN wget --quiet http://nlp.stanford.edu/software/$VERSION.zip -O corenlp.zip
+RUN wget http://nlp.stanford.edu/software/$VERSION.zip -O corenlp.zip
 RUN unzip corenlp.zip
 RUN mv $VERSION src
 RUN rm -r corenlp.zip
 
-# Add service
-RUN mkdir /etc/service/corenlp
-ADD corenlp.sh /etc/service/corenlp/run
+# Add it as a service
+ADD corenlp.sh /etc/init.d/corenlp
+RUN chmod +x /etc/init.d/corenlp
+RUN rc-update add corenlp
 EXPOSE 9000
 
+CMD ["rc-service corenlp start"]
+
 # Clean up
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache
+RUN rm -rf /tmp/* /var/tmp/* /var/cache
