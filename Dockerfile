@@ -21,7 +21,7 @@ RUN chmod +x /etc/init.d/corenlp
 RUN rc-update add corenlp
 EXPOSE 9000
 
-CMD ["rc-service corenlp start"]
+CMD rc-service corenlp start
 
 # Clean up
 RUN rm -rf /tmp/* /var/tmp/* /var/cache
