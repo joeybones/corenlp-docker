@@ -1,5 +1,8 @@
 # Dockerized CoreNLP Server v3.8.0
-This is a fork of [vzhong/corenlp-docker](https://github.com/vzhong/corenlp-docker) with the version upgraded to 3.8.0
+This is a fork of [vzhong/corenlp-docker](https://github.com/vzhong/corenlp-docker) with the following revisions 
+* Stanford Core NLP version upgraded to 3.8.0
+* Base image switched to frolvlad/alpine-oraclejdk8:slim
+  * No longer necessary to install Java 8
 
 To get this image:
 
